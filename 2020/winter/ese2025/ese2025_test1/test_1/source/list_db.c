@@ -21,10 +21,6 @@ stuLL_t* createNodeLinkedList(void)
 {
 	stuLL_t* pNew = (stuLL_t*)malloc(sizeof(stuLL_t));
 
-	if(pNew != NULL)
-	{
-		pNew->pNext = NULL;
-	}
 	return pNew;
 
 }
