@@ -88,13 +88,12 @@ stuLL_t* addNodeLinkedList(stuLL_t *pHEAD, stuRec_t stdata)
 stuLL_t* findLinkedList(stuLL_t *pHEAD, char *targetFamilyName)
 {
 	stuLL_t *pW = pHEAD;
-	unsigned int i = 0;
 	if (pW != NULL) // if pW == NULL, simply exit
 	{
 		// list is not empty, begin search
 		while ((pW != NULL) && (strcmp(pW->data.fName, targetFamilyName)))
 		{
-			pw = pw->pNext; //progress onto the next node
+			pW = pW-> pNext; //progress onto the next node
 		}
 		printf("\n");
 	}

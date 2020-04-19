@@ -69,10 +69,15 @@ int comparo_grade(const void *pA, const void *pB)
  */
 stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
 {
-	if (pHEAD_LL != NULL) // checking if list is empty
-	{
+
 		/* create an array with enough elements */
 		stuDA_t *pHEAD_DA = (stuDA_t*) malloc(student_count * sizeof(stuRec_t));
+
+		if (pHEAD_LL == NULL)// checking if list is empty
+		{
+			printf("\nLinked list is empty!");
+			exit(EXIT_FAILURE);
+		}
 
 		if (pHEAD_DA != NULL) // if memory is allocated without failure
 		{
@@ -95,13 +100,6 @@ stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
 			exit(EXIT_FAILURE);
 
 		}
-
-	}
-	else
-	{
-		printf("\nLinked list is empty!");
-		exit(EXIT_FAILURE);
-	}
 
 	return pHEAD_DA;
 }

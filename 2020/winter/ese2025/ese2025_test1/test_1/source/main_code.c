@@ -81,6 +81,7 @@ int main(int argc, char *argv[])
 		printf("sort command executing... \n");
 		stuDA_t *pHeadArr = formDynamicArray(pHead, student_count);
 		char *arg2 = argv[2];
+
 		printf("	printing contents of dynamic array: \n");
 		displayDynamicArray(pHeadArr, student_count);
 		printf("\n\n");
