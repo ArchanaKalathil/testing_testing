@@ -58,19 +58,38 @@ int comparo_grade(const void *pA, const void *pB)
  */
 stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
 {
-	/* create an array with enough elements */
-	stuDA_t *pHEAD_DA = (stuDA_t*) malloc(student_count * sizeof(stuRec_t));
-
-	/* now transfer the data from record to the array */
-	stuLL_t *pW_LL = pHEAD_LL; // if pHEAD_LL is NULL, we will return NULL
-	size_t i = 0;
-	while (pW_LL != NULL)
+	if (pHEAD_LL != NULL) // checking if list is empty
 	{
-		strcpy(pHEAD_DA[i].data.fName, pW_LL->data.fName); // assign fName
-		strcpy(pHEAD_DA[i].data.gName, pW_LL->data.gName); // assign gName
-		pHEAD_DA[i].data.grade = pW_LL->data.grade; // assign grade
-		pW_LL = pW_LL->pNext; // go to next linked-list element
-		++i; // increment to next array index
+		/* create an array with enough elements */
+		stuDA_t *pHEAD_DA = (stuDA_t*) malloc(student_count * sizeof(stuRec_t));
+
+		if (pHEAD_DA != NULL) // if memory is allocated without failure
+		{
+			/* now transfer the data from record to the array */
+			stuLL_t *pW_LL = pHEAD_LL;
+			size_t i = 0;
+			while (pW_LL != NULL)
+			{
+				strcpy(pHEAD_DA[i].data.fName, pW_LL->data.fName); // assign fName
+				strcpy(pHEAD_DA[i].data.gName, pW_LL->data.gName); // assign gName
+				pHEAD_DA[i].data.grade = pW_LL->data.grade; // assign grade
+				pW_LL = pW_LL->pNext; // go to next linked-list element
+				++i; // increment to next array index
+			}
+		}
+		else
+		{
+
+			printf("error... cannot allocate memory!");
+			exit(EXIT_FAILURE);
+
+		}
+
+	}
+	else
+	{
+		printf("\nLinked list is empty!");
+		exit(EXIT_FAILURE);
 	}
 
 	return pHEAD_DA;
@@ -80,13 +99,11 @@ stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
  * function uses std qsort() function to sort the dynamic array
  */
 stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
-		const size_t array_size)
-{
+		const size_t array_size) {
 	// PROBLEM #5: complete the code for this function
 	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
 
-	switch (sort_type)
-	{
+	switch (sort_type) {
 	case fNamesort:
 		qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_fName);
 		break;
@@ -101,12 +118,10 @@ stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
 /*
  * function sends the dynamic array data to stdout
  */
-void displayDynamicArray(stuDA_t *pHEAD, const size_t array_size)
-{
+void displayDynamicArray(stuDA_t *pHEAD, const size_t array_size) {
 	size_t i;
 	printf("%-12s %-12s %-5s\n", "FAMILY NAME", "GIVEN NAME", "GRADE");
-	for (i = 0; i != array_size; ++i)
-	{
+	for (i = 0; i != array_size; ++i) {
 		printf("%-12s %-12s %2.3f\n", pHEAD[i].data.fName, pHEAD[i].data.gName,
 				pHEAD[i].data.grade);
 	}

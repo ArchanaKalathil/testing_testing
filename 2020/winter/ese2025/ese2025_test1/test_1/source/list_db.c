@@ -19,7 +19,7 @@
  */
 stuLL_t* createNodeLinkedList(void)
 {
-	stuLL_t* pNew = (stuLL_t*)malloc(sizeof(stuLL_t));
+	stuLL_t* pNew = (stuLL_t*)malloc(sizeof(stuLL_t)); // allocate memory in the heap
 
 	return pNew;
 
@@ -94,7 +94,7 @@ stuLL_t* findLinkedList(stuLL_t *pHEAD, char *targetFamilyName)
 		// list is not empty, begin search
 		while ((pW != NULL) && (strcmp(pW->data.fName, targetFamilyName)))
 		{
-			pw = pw->pNext;
+			pw = pw->pNext; //progress onto the next node
 		}
 		printf("\n");
 	}
