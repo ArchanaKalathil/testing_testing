@@ -21,9 +21,16 @@
  */
 int comparo_fName(const void *pA, const void *pB)
 {
+	// extract student records
+	stuDA_t student_A = *((stuDA_t*) pA);
+	stuDA_t student_B = *((stuDA_t*) pB);
 
-	// PROBLEM #3: complete the code for this function
-	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
+	// get student family names
+	char *fName_A = student_A.data.fName;
+	char *fName_B = student_B.data.fName;
+
+	return strcmp(fName_A, fName_B);
+
 }
 
 /*
@@ -98,15 +105,16 @@ stuDA_t* formDynamicArray(stuLL_t *pHEAD_LL, size_t student_count)
 /*
  * function uses std qsort() function to sort the dynamic array
  */
-stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
-		const size_t array_size) {
+stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type, const size_t array_size)
+{
 	// PROBLEM #5: complete the code for this function
 	//	       NOTE: PLEASE COMMIT CHANGES ONCE YOUR DONE THIS FUNCTION
 
-	switch (sort_type) {
+	switch (sort_type)
+	{
 	case fNamesort:
-		qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_fName);
-		break;
+					qsort(pHEAD, array_size, sizeof(stuRec_t), comparo_fName);
+					break;
 	case gNamesort:
 		// fill the code here for Part a)
 	case gradesort:
@@ -118,10 +126,12 @@ stuDA_t* sortDynamicArray(stuDA_t *pHEAD, const sort_t sort_type,
 /*
  * function sends the dynamic array data to stdout
  */
-void displayDynamicArray(stuDA_t *pHEAD, const size_t array_size) {
+void displayDynamicArray(stuDA_t *pHEAD, const size_t array_size)
+{
 	size_t i;
 	printf("%-12s %-12s %-5s\n", "FAMILY NAME", "GIVEN NAME", "GRADE");
-	for (i = 0; i != array_size; ++i) {
+	for (i = 0; i != array_size; ++i)
+	{
 		printf("%-12s %-12s %2.3f\n", pHEAD[i].data.fName, pHEAD[i].data.gName,
 				pHEAD[i].data.grade);
 	}
